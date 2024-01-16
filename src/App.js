@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import ChipsContainer from './Components/ChipsContainer';
+import SearchChip from './Components/SearchChip';
+import { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const [searchResultVisibility, setSearchResultVisibility] = useState(false);
+    const [backspacePressedCount, setBackspacePressedCount] = useState(0);
+    console.log(backspacePressedCount);
+    return (
+        <div
+            onClick={() => {
+                setSearchResultVisibility(false);
+            }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <div className="text-6xl text-center my-6 text-blue-600">Pick User</div>
+            <div className="flex justify-center items-center">
+                <div className="w-1/3">
+                    <ChipsContainer />
+                </div>
+            </div>
+            <div className="flex justify-center items-center">
+                <div className="w-1/3 pt-4">
+                    <SearchChip
+                        searchedResultsShown={searchResultVisibility}
+                        setSearchedResultsShown={setSearchResultVisibility}
+                        setBackspacePressedCountVal={setBackspacePressedCount}
+                    />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
